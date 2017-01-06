@@ -4,7 +4,7 @@ import com.sawan.ioof.model.Point;
 
 public class TableTopTerrain extends Terrain{
 
-    TableTopTerrain(int w, int h) {
+    public TableTopTerrain(int w, int h) {
         super(w, h);
     }
 

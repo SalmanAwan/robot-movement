@@ -2,6 +2,11 @@ package com.sawan.ioof.model
 
 import spock.lang.Specification
 
+import static com.sawan.ioof.model.Direction.EAST
+import static com.sawan.ioof.model.Direction.WEST
+import static com.sawan.ioof.model.Direction.NORTH
+import static com.sawan.ioof.model.Direction.SOUTH
+
 class DirectionTest extends Specification {
 
     def "Direction valueOf"() {
@@ -13,10 +18,10 @@ class DirectionTest extends Specification {
 
         where:
         str    | result
-        'EAST' | Direction.EAST
-        'WEST' | Direction.WEST
-        'NORTH'| Direction.NORTH
-        'SOUTH'| Direction.SOUTH
+        'EAST' | EAST
+        'WEST' | WEST
+        'NORTH'| NORTH
+        'SOUTH'| SOUTH
     }
 
     def "Direction values"() {
@@ -24,7 +29,37 @@ class DirectionTest extends Specification {
         def vs = Direction.values()
 
         then:
-        vs == [Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH]
+        vs == [EAST, WEST, NORTH, SOUTH]
+    }
+
+    def "Direction getRightOf"() {
+        when:
+        def d = Direction.getRightOf(curr)
+
+        then:
+        d == result
+
+        where:
+        curr  | result
+        EAST  | SOUTH
+        WEST  | NORTH
+        NORTH | EAST
+        SOUTH | WEST
+    }
+
+    def "Direction getLeftOf"() {
+        when:
+        def d = Direction.getLeftOf(curr)
+
+        then:
+        d == result
+
+        where:
+        curr  | result
+        EAST  | NORTH
+        WEST  | SOUTH
+        NORTH | WEST
+        SOUTH | EAST
     }
 
 }

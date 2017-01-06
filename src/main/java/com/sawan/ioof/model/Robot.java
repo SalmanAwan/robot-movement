@@ -8,7 +8,7 @@ public class Robot {
     private Point point;
     private Direction direction;
 
-    Robot(Terrain t) {
+    public Robot(Terrain t) {
         this.terrain = t;
     }
 
@@ -33,10 +33,10 @@ public class Robot {
         int x = this.point.getX();
         int y = this.point.getY();
         switch (direction) {
-            case EAST:  y += 1; break;
-            case WEST:  y -= 1; break;
-            case NORTH: x += 1; break;
-            case SOUTH: x -= 1; break;
+            case EAST:  x += 1; break;
+            case WEST:  x -= 1; break;
+            case NORTH: y += 1; break;
+            case SOUTH: y -= 1; break;
         }
         Point newPos = new Point(x, y);
         if(terrain.isWithinBounds(newPos)) {
@@ -52,6 +52,16 @@ public class Robot {
     public void turnLeft() {
         if(!isPlaced()) { return; }
         this.direction = Direction.getLeftOf(this.direction);
+    }
+
+    public void report() {
+        if(!isPlaced()) { return; }
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s,%s", point.toString(), direction.toString());
     }
 
 }

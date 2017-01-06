@@ -49,10 +49,10 @@ class CommandsTest extends Specification {
 
         where:
         currP           | currD           | newX | newY
-        new Point(2, 2) | Direction.EAST  | 2    | 3
-        new Point(2, 2) | Direction.WEST  | 2    | 1
-        new Point(2, 2) | Direction.NORTH | 3    | 2
-        new Point(2, 2) | Direction.SOUTH | 1    | 2
+        new Point(2, 2) | Direction.EAST  | 3    | 2
+        new Point(2, 2) | Direction.WEST  | 1    | 2
+        new Point(2, 2) | Direction.NORTH | 2    | 3
+        new Point(2, 2) | Direction.SOUTH | 2    | 1
         new Point(4, 4) | Direction.EAST  | 4    | 4
         new Point(0, 0) | Direction.WEST  | 0    | 0
         new Point(4, 4) | Direction.NORTH | 4    | 4
@@ -99,4 +99,17 @@ class CommandsTest extends Specification {
         Direction.SOUTH | Direction.EAST
     }
 
+    def "ReportRobotCommand execute"() {
+        setup:
+        robot.point     = point
+        robot.direction = direction
+
+        when:
+        def mc = new ReportRobotCommand()
+        mc.execute(robot)
+
+        then:
+        robot.toString() == '2,2,EAST'
+
+    }
 }

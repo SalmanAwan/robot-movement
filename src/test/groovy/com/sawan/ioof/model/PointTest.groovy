@@ -18,7 +18,7 @@ class PointTest extends Specification {
         def str = new Point(0, 0).toString()
 
         then:
-        str.equals('0 0')
+        str.equals('0,0')
     }
 
 }

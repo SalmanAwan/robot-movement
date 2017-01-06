@@ -10,6 +10,6 @@ public abstract class RobotCommand {
     public static final String RIGHT_REGEX  = "^RIGHT$";
     public static final String REPORT_REGEX = "^REPORT$";
 
-    abstract void execute(Robot robot);
+    public abstract void execute(Robot robot);
 
 }

@@ -5,7 +5,7 @@ import com.sawan.ioof.model.Robot;
 public class ReportRobotCommand extends RobotCommand {
 
     public void execute(Robot robot){
-        robot.turnLeft();
+        robot.report();
     }
 
 }
