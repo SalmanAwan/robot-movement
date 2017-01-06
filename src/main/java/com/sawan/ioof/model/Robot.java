@@ -26,4 +26,32 @@ public class Robot {
         point = p;
         direction = d;
     }
+
+    public void move() {
+        if(!isPlaced()) { return; }
+
+        int x = this.point.getX();
+        int y = this.point.getY();
+        switch (direction) {
+            case EAST:  y += 1; break;
+            case WEST:  y -= 1; break;
+            case NORTH: x += 1; break;
+            case SOUTH: x -= 1; break;
+        }
+        Point newPos = new Point(x, y);
+        if(terrain.isWithinBounds(newPos)) {
+            this.point = newPos;
+        }
+    }
+
+    public void turnRight() {
+        if(!isPlaced()) { return; }
+        this.direction = Direction.getRightOf(this.direction);
+    }
+
+    public void turnLeft() {
+        if(!isPlaced()) { return; }
+        this.direction = Direction.getLeftOf(this.direction);
+    }
+
 }

@@ -15,8 +15,6 @@ public class PlaceRobotCommand extends RobotCommand {
     }
 
     public void execute(Robot robot) {
-        setRobot(robot);
-        validateRobot();
         robot.place(NEW_POINT, NEW_DIRECTION);
     }
 

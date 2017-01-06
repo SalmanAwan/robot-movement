@@ -10,18 +10,6 @@ public abstract class RobotCommand {
     public static final String RIGHT_REGEX  = "^RIGHT$";
     public static final String REPORT_REGEX = "^REPORT$";
 
-    private Robot robot;
-
     abstract void execute(Robot robot);
-
-    public void setRobot(Robot r) { this.robot = r; }
-
-    public Robot getRobot() { return this.robot; }
-
-    public void validateRobot() throws IllegalStateException{
-        if(getRobot() == null) {
-            throw new IllegalStateException("Command executed when no robot set");
-        }
-    }
 
 }
