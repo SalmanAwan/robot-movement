@@ -1,6 +1,6 @@
 package com.sawan.ioof.model;
 
-public class TableTopTerrain {
+public class TableTopTerrain extends Terrain{
 
     private int width;
     private int height;

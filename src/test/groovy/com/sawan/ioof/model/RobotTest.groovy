@@ -6,7 +6,7 @@ class RobotTest extends Specification {
 
     def "Robot construction with terrain"() {
         when:
-        def trrain = new TableTopTerrain(5, 5)
+        def terrain = new TableTopTerrain(5, 5)
         def robot = new Robot(terrain)
 
         then:
@@ -19,6 +19,8 @@ class RobotTest extends Specification {
         def robot = new Robot(terrain)
 
         then:
+        robot.currX == -1
+        robot.currY == -1
         !robot.isPositioned()
 
         where:
