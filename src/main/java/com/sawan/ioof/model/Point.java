@@ -2,6 +2,8 @@ package com.sawan.ioof.model;
 
 public class Point {
 
+    public static final int VOID = -1;
+
     private int x;
     private int y;
 

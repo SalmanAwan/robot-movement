@@ -1,17 +1,17 @@
 package com.sawan.ioof.model
 
-import spock.lang.Shared
 import spock.lang.Specification
-import spock.lang.Unroll
 
 class RobotTest extends Specification {
 
-    @Shared static Terrain terrain
-    @Shared static Point point
+    static Terrain terrain
+    static Point point
+    static Point pointInvalid
 
     void setup() {
-        terrain = new TableTopTerrain(5, 5)
-        point = new Point(-1, -1)
+        terrain      = new TableTopTerrain(5, 5)
+        point        = new Point(0, 0)
+        pointInvalid = new Point(Point.VOID, Point.VOID)
     }
 
     def "Robot construction with terrain"() {
@@ -25,19 +25,15 @@ class RobotTest extends Specification {
         robot.terrain.height == 5
     }
 
-    @Unroll
     def "Robot is not positioned untill terrain is set and properly placed on it"() {
         when:
-        def robot = new Robot(t)
-        robot.place(p, d)
+        def robot = r
 
         then:
         !robot.isPlaced()
 
         where:
-        t << [null, terrain]
-        p << [null, point]
-        d << [null, Direction.EAST]
+        r << [new Robot(null), new Robot(terrain)]
     }
 
 }

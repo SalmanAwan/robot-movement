@@ -14,7 +14,8 @@ public class Robot {
         if (terrain == null || curr == null || facing == null) {
             return false;
         }
-        return curr.getX() != -1 && curr.getY() != -1;
+        return curr.getX() != Point.VOID && curr.getY() != Point.VOID;
     }
+
 
 }
