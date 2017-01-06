@@ -18,7 +18,7 @@ public class CommandsService {
         List<String> lines = fileService.getLines();
 
         commands = lines.stream()
-                .map(CommandsService::StringToCommandMapper)
+                .map(CommandsService::CommandFactory)
                 .collect(Collectors.toList());
     }
 
@@ -26,7 +26,7 @@ public class CommandsService {
         return this.commands;
     }
 
-    private static Command StringToCommandMapper(String line) {
+    private static Command CommandFactory(String line) {
         return new Command();
     }
 
