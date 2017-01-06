@@ -2,20 +2,19 @@ package com.sawan.ioof.model;
 
 public class Robot {
 
-    private int currX;
-
-    private int currY;
-
     private Terrain terrain;
+    private Point curr;
+    private Direction facing;
 
     Robot(Terrain t) {
-        this.currX = -1;
-        this.currY = -1;
         this.terrain = t;
     }
 
-    public boolean isPositioned() {
-        return terrain != null && currX != -1 && currY != -1;
+    public boolean isPlaced() {
+        if (terrain == null || curr == null || facing == null) {
+            return false;
+        }
+        return curr.getX() != -1 && curr.getY() != -1;
     }
 
 }

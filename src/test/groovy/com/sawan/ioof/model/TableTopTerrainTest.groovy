@@ -1,9 +1,11 @@
 package com.sawan.ioof.model
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class TableTopTerrainTest extends Specification {
 
+    @Unroll
     def "Terrain construction"() {
         when:
         def terrain = new TableTopTerrain(w, h)
@@ -19,15 +21,16 @@ class TableTopTerrainTest extends Specification {
         5000 | 500
      }
 
+    @Unroll
     def "Terrain point within bounds"() {
         when:
         def terrain = new TableTopTerrain(5, 5)
 
         then:
-        terrain.isWithinBounds(i, j)
+        terrain.isWithinBounds(new Point(x, y))
 
         where:
-        i | j
+        x | y
         0 | 0
         0 | 4
         2 | 2
@@ -35,15 +38,16 @@ class TableTopTerrainTest extends Specification {
         4 | 4
     }
 
+    @Unroll
     def "Terrain point out of bounds"() {
         when:
         def terrain = new TableTopTerrain(5, 5)
 
         then:
-        !terrain.isWithinBounds(i, j)
+        !terrain.isWithinBounds(new Point(x, y))
 
         where:
-        i  | j
+        x  | y
         -1 | -1
         -1 | 0
         0  | -1

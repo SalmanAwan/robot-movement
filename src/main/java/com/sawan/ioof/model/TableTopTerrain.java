@@ -10,7 +10,8 @@ public class TableTopTerrain extends Terrain{
         height = h;
     }
 
-    public boolean isWithinBounds(int i, int j) {
-        return i >= 0 && i < width && j >= 0 && j < height;
+    public boolean isWithinBounds(Point p) {
+        return p.getX() >= 0 && p.getX() < width &&
+               p.getY() >= 0 && p.getY() < height;
     }
 }
