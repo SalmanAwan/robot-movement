@@ -1,21 +1,25 @@
 package com.sawan.ioof.services;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class FileService {
 
     private List<String> lines = new ArrayList<>();
 
     public FileService(String fileName) {
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            stream.forEach(lines::add);
+        try {
+            // For better coverage not using nio stream based lines reading
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = br.readLine()) != null)
+                lines.add(line);
+            br.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Could not read commands file");
         }
     }
 
