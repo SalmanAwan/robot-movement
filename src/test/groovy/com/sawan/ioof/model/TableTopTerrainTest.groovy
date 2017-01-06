@@ -6,15 +6,14 @@ class TableTopTerrainTest extends Specification {
 
     def "Terrain construction"() {
         when:
-        def terrain = new TableTopTerrain(x, y)
+        def terrain = new TableTopTerrain(w, h)
 
         then:
-        terrain.x == x
-        terrain.y == y
+        terrain.width  == w
+        terrain.height == h
 
         where:
-        x    | y
-        null | null
+        w    | h
         0    | 0
         5    | 5
         5000 | 500
@@ -25,10 +24,10 @@ class TableTopTerrainTest extends Specification {
         def terrain = new TableTopTerrain(5, 5)
 
         then:
-        terrain.inBounds(x, y)
+        terrain.isWithinBounds(i, j)
 
         where:
-        x | y
+        i | j
         0 | 0
         0 | 4
         2 | 2
@@ -41,10 +40,10 @@ class TableTopTerrainTest extends Specification {
         def terrain = new TableTopTerrain(5, 5)
 
         then:
-        !terrain.inBounds(x, y)
+        !terrain.isWithinBounds(i, j)
 
         where:
-        x  | y
+        i  | j
         -1 | -1
         -1 | 0
         0  | -1

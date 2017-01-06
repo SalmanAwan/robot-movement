@@ -4,12 +4,13 @@ The application is a simulation of a toy robot moving on a square
 tabletop, of dimensions 5 units x 5 units.
 
 ### Assumptions
-
+* This robot is prototype only so does not have to support many terrains
 
 ### Improvements
-* Add test framework support (Spock)
+* Add javadoc documentation notes for methods
+* Add computational complexity notes
 * Update Check out sources section with git repo url once pushed to Git
-
+* Add jacoco code coverage support
  
 ### Build
 
@@ -28,7 +29,12 @@ tabletop, of dimensions 5 units x 5 units.
 
 ## Test
 
-`gradlew clean check`
+`gradlew clean check jacocoTestReport`
+
+Coverage Report:`<PROJECT_ROOT>/build/reports/jacoco/test/html/index.html`
+
+Tests Report:`<PROJECT_ROOT>/build/reports/tests/test/index.html`
+
 
 ## Run
 
