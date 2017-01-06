@@ -1,5 +1,7 @@
 package com.sawan.ioof.model
 
+import com.sawan.ioof.model.terrains.TableTopTerrain
+import com.sawan.ioof.model.terrains.Terrain
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -7,29 +9,31 @@ class RobotTest extends Specification {
 
     static Terrain terrain
     static Point point
-    static Point pointInvalid
-    static Robot robot
+    static Point pointVoid
+    static Point pointXVoid
+    static Point pointYVoid
 
     void setup() {
         terrain      = new TableTopTerrain(5, 5)
         point        = new Point(0, 0)
-        pointInvalid = new Point(Point.VOID, Point.VOID)
-        robot        = new Robot(terrain)
+        pointVoid    = new Point(Point.VOID, Point.VOID)
+        pointXVoid   = new Point(Point.VOID, 0)
+        pointYVoid   = new Point(0, Point.VOID)
     }
 
     def "Robot construction with terrain"() {
         when:
-        def r = robot
+        def r = new Robot(terrain)
 
         then:
-        r.curr == null
-        r.facing == null
+        r.point == null
+        r.direction == null
         r.terrain.width  == 5
         r.terrain.height == 5
     }
 
     @Unroll
-    def "Robot is not positioned untill terrain is set and properly placed on it"() {
+    def "Robot not isPlaced when no terrain"() {
         when:
         def r = robot
 
@@ -37,19 +41,52 @@ class RobotTest extends Specification {
         !r.isPlaced()
 
         where:
-        r << [new Robot(null), new Robot(terrain)]
+        robot << [new Robot(null), new Robot(terrain)]
+    }
+
+    def "Robot not isPlaced when no valid point or direction"() {
+        when:
+        def r = new Robot(terrain)
+        r.point = p
+        r.direction = d
+
+        then:
+        !r.isPlaced()
+
+        where:
+        p          | d
+        null       | Direction.EAST
+        point      | null
+        pointVoid  | Direction.EAST
+        pointXVoid | Direction.EAST
+        pointYVoid | Direction.EAST
     }
 
     @Unroll
-    def "Robot throws when attempt to place incorrectly"() {
+    def "Robot place throws"() {
         when:
-        r
+        def r = new Robot(terrain)
+        r.place(p, d)
 
         then:
-        thrown(IllegalArgumentException.class)
+        thrown(java.lang.IllegalArgumentException.class)
 
         where:
-        r << [robot.place(point, null),
-              robot.place(pointInvalid, Direction.EAST)]
+        p          | d
+        null       | null
+        null       | Direction.EAST
+        point      | null
+        pointVoid  | Direction.EAST
+        pointXVoid | Direction.EAST
+        pointYVoid | Direction.EAST
+    }
+
+    def "Robot isPlaced"() {
+        when:
+        def r = new Robot(terrain)
+        r.place(point, Direction.EAST)
+
+        then:
+        r.isPlaced()
     }
 }

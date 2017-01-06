@@ -1,5 +1,6 @@
 package com.sawan.ioof.model
 
+import com.sawan.ioof.model.terrains.TableTopTerrain
 import spock.lang.Specification
 import spock.lang.Unroll
 

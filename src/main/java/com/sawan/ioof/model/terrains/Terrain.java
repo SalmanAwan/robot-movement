@@ -1,6 +1,8 @@
-package com.sawan.ioof.model;
+package com.sawan.ioof.model.terrains;
 
-abstract class Terrain {
+import com.sawan.ioof.model.Point;
+
+public abstract class Terrain {
     private int width;
     private int height;
 
@@ -12,10 +14,6 @@ abstract class Terrain {
     public int getWidth() { return width; }
 
     public int getHeight() { return height; }
-
-    public void setWidth(int w) { this.width = w; }
-
-    public void setHeight(int h) { this.height = h; }
 
     abstract public boolean isWithinBounds(Point p);
 }

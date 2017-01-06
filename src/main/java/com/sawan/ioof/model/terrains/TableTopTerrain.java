@@ -1,4 +1,6 @@
-package com.sawan.ioof.model;
+package com.sawan.ioof.model.terrains;
+
+import com.sawan.ioof.model.Point;
 
 public class TableTopTerrain extends Terrain{
 
