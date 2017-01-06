@@ -1,0 +1,1 @@
+@java -jar build/libs/robot-movement-1.0-SNAPSHOT.jar
