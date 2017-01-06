@@ -6,10 +6,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Takes a file name and reads lines
+ */
 public class FileService {
 
     private List<String> lines = new ArrayList<>();
 
+    /**
+     * Populate {@code List<String>} with lines of text in file
+     * @param fileName name of the file to read
+     */
     public FileService(String fileName) {
         try {
             // For better coverage not using nio stream based lines reading
@@ -20,7 +27,7 @@ public class FileService {
             }
             br.close();
         } catch (IOException e) {
-            System.out.println("Could not read robotCommands file");
+            System.out.println("Could not read robot commands file");
         }
     }
 

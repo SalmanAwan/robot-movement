@@ -1,5 +1,8 @@
 package com.sawan.ioof.model;
 
+/**
+ * Represents position on a two dimensional plane
+ */
 public class Point {
 
     public static final int VOID = -1;

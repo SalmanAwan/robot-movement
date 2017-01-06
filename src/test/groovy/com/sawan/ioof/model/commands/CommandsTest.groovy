@@ -1,10 +1,11 @@
 package com.sawan.ioof.model.commands
 
-import com.sawan.ioof.model.Direction
 import com.sawan.ioof.model.Point
 import com.sawan.ioof.model.Robot
 import com.sawan.ioof.model.terrains.TableTopTerrain
 import spock.lang.Specification
+
+import static com.sawan.ioof.model.Direction.*
 
 class CommandsTest extends Specification {
 
@@ -17,7 +18,7 @@ class CommandsTest extends Specification {
         point = new Point(2, 2)
         terrain = new TableTopTerrain(5, 5)
         robot = new Robot(terrain)
-        direction = Direction.EAST
+        direction = EAST
     }
 
     def "PlaceRobotCommand execute"() {
@@ -30,7 +31,7 @@ class CommandsTest extends Specification {
         robot.terrain.width  == 5
         robot.point.x == 2
         robot.point.y == 2
-        robot.direction == Direction.EAST
+        robot.direction == EAST
     }
 
     def "MoveRobotCommand execute"() {
@@ -48,15 +49,15 @@ class CommandsTest extends Specification {
         robot.direction == currD
 
         where:
-        currP           | currD           | newX | newY
-        new Point(2, 2) | Direction.EAST  | 3    | 2
-        new Point(2, 2) | Direction.WEST  | 1    | 2
-        new Point(2, 2) | Direction.NORTH | 2    | 3
-        new Point(2, 2) | Direction.SOUTH | 2    | 1
-        new Point(4, 4) | Direction.EAST  | 4    | 4
-        new Point(0, 0) | Direction.WEST  | 0    | 0
-        new Point(4, 4) | Direction.NORTH | 4    | 4
-        new Point(0, 0) | Direction.SOUTH | 0    | 0
+        currP           | currD | newX | newY
+        new Point(2, 2) | EAST  | 3    | 2
+        new Point(2, 2) | WEST  | 1    | 2
+        new Point(2, 2) | NORTH | 2    | 3
+        new Point(2, 2) | SOUTH | 2    | 1
+        new Point(4, 4) | EAST  | 4    | 4
+        new Point(0, 0) | WEST  | 0    | 0
+        new Point(4, 4) | NORTH | 4    | 4
+        new Point(0, 0) | SOUTH | 0    | 0
     }
 
     def "RightRobotCommand execute"() {
@@ -72,11 +73,11 @@ class CommandsTest extends Specification {
         robot.direction == newD
 
         where:
-        currD           | newD
-        Direction.EAST  | Direction.SOUTH
-        Direction.WEST  | Direction.NORTH
-        Direction.NORTH | Direction.EAST
-        Direction.SOUTH | Direction.WEST
+        currD | newD
+        EAST  | SOUTH
+        WEST  | NORTH
+        NORTH | EAST
+        SOUTH | WEST
     }
 
     def "LefttRobotCommand execute"() {
@@ -92,11 +93,11 @@ class CommandsTest extends Specification {
         robot.direction == newD
 
         where:
-        currD           | newD
-        Direction.EAST  | Direction.NORTH
-        Direction.WEST  | Direction.SOUTH
-        Direction.NORTH | Direction.WEST
-        Direction.SOUTH | Direction.EAST
+        currD | newD
+        EAST  | NORTH
+        WEST  | SOUTH
+        NORTH | WEST
+        SOUTH | EAST
     }
 
     def "ReportRobotCommand execute"() {

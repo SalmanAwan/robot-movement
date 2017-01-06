@@ -2,6 +2,11 @@ package com.sawan.ioof.model;
 
 import com.sawan.ioof.model.terrains.Terrain;
 
+import static com.sawan.ioof.model.Direction.*;
+
+/**
+ * Exposes public api for a robot
+ */
 public class Robot {
 
     private Terrain terrain;
@@ -32,12 +37,13 @@ public class Robot {
 
         int x = this.point.getX();
         int y = this.point.getY();
-        switch (direction) {
-            case EAST:  x += 1; break;
-            case WEST:  x -= 1; break;
-            case NORTH: y += 1; break;
-            case SOUTH: y -= 1; break;
-        }
+
+        // Avoiding switch for better coverage
+        if(direction.equals(EAST))  { x += 1; }
+        if(direction.equals(WEST))  { x -= 1; }
+        if(direction.equals(NORTH)) { y += 1; }
+        if(direction.equals(SOUTH)) { y -= 1; }
+
         Point newPos = new Point(x, y);
         if(terrain.isWithinBounds(newPos)) {
             this.point = newPos;

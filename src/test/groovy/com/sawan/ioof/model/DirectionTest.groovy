@@ -2,10 +2,7 @@ package com.sawan.ioof.model
 
 import spock.lang.Specification
 
-import static com.sawan.ioof.model.Direction.EAST
-import static com.sawan.ioof.model.Direction.WEST
-import static com.sawan.ioof.model.Direction.NORTH
-import static com.sawan.ioof.model.Direction.SOUTH
+import static com.sawan.ioof.model.Direction.*
 
 class DirectionTest extends Specification {
 

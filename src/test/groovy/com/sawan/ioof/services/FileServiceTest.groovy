@@ -20,8 +20,7 @@ class FileServiceTest extends Specification {
         when:
         new FileService('foo')
 
-        then:
-        true    // for coverage
+        then: true
     }
 
 }

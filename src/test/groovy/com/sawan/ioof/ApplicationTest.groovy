@@ -11,8 +11,7 @@ class ApplicationTest extends Specification {
         String [] list = l
         app.main(list)
 
-        then:
-        true
+        then: true
 
         where:
         l << [[TestHelper.COMMANDS_FILE_PATH], [], [null]]

@@ -5,6 +5,8 @@ import com.sawan.ioof.model.terrains.Terrain
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static com.sawan.ioof.model.Direction.EAST
+
 class RobotTest extends Specification {
 
     static Terrain terrain
@@ -44,6 +46,7 @@ class RobotTest extends Specification {
         robot << [new Robot(null), new Robot(terrain)]
     }
 
+    @Unroll
     def "Robot not isPlaced when no valid point or direction"() {
         when:
         def r = new Robot(terrain)
@@ -55,11 +58,11 @@ class RobotTest extends Specification {
 
         where:
         p          | d
-        null       | Direction.EAST
+        null       | EAST
         point      | null
-        pointVoid  | Direction.EAST
-        pointXVoid | Direction.EAST
-        pointYVoid | Direction.EAST
+        pointVoid  | EAST
+        pointXVoid | EAST
+        pointYVoid | EAST
     }
 
     @Unroll
@@ -74,19 +77,51 @@ class RobotTest extends Specification {
         where:
         p          | d
         null       | null
-        null       | Direction.EAST
+        null       | EAST
         point      | null
-        pointVoid  | Direction.EAST
-        pointXVoid | Direction.EAST
-        pointYVoid | Direction.EAST
+        pointVoid  | EAST
+        pointXVoid | EAST
+        pointYVoid | EAST
     }
 
     def "Robot isPlaced"() {
         when:
         def r = new Robot(terrain)
-        r.place(point, Direction.EAST)
+        r.place(point, EAST)
 
         then:
         r.isPlaced()
+    }
+
+    def "Robot move not placed"() {
+        when:
+        def r = new Robot(terrain)
+        r.move()
+
+        then: true
+    }
+
+    def "Robot turnRight not placed"() {
+        when:
+        def r = new Robot(terrain)
+        r.turnRight()
+
+        then: true
+    }
+
+    def "Robot turnLeft not placed"() {
+        when:
+        def r = new Robot(terrain)
+        r.turnLeft()
+
+        then: true
+    }
+
+    def "Robot report not placed"() {
+        when:
+        def r = new Robot(terrain)
+        r.report()
+
+        then: true
     }
 }
