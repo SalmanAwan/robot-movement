@@ -1,6 +1,6 @@
 package com.sawan.ioof.services
 
-import com.sawan.ioof.commands.Command
+import com.sawan.ioof.commands.*
 import com.sawan.ioof.helper.TestHelper
 import spock.lang.Specification
 
@@ -11,22 +11,22 @@ class CommandsServiceTest extends Specification {
     def "CommandsService generate commands"() {
         when:
         def service = new CommandsService(COMMANDS_FILE_PATH)
-        def commands = service.getCommands();
+        def commands = service.getRobotCommands();
 
         then:
         def lines = TestHelper.readRawRows()
-        commands.size() == lines.size()
-        commands.count { it instanceof PlaceCommand  } == lines.count { it.matches Command.PLACE_REGEX  }
-        commands.count { it instanceof MoveCommand   } == lines.count { it.matches Command.MOVE_REGEX   }
-        commands.count { it instanceof LeftCommand   } == lines.count { it.matches Command.LEFT_REGEX   }
-        commands.count { it instanceof RightCommand  } == lines.count { it.matches Command.RIGHT_REGEX  }
-        commands.count { it instanceof ReportCommand } == lines.count { it.matches Command.REPORT_REGEX }
+        commands.size() == 13 // valid commands
+        commands.count { it instanceof PlaceRobotCommand  } == lines.count { it.matches RobotCommand.PLACE_REGEX  }
+        commands.count { it instanceof MoveRobotCommand   } == lines.count { it.matches RobotCommand.MOVE_REGEX   }
+        commands.count { it instanceof LeftRobotCommand   } == lines.count { it.matches RobotCommand.LEFT_REGEX   }
+        commands.count { it instanceof RightRobotCommand  } == lines.count { it.matches RobotCommand.RIGHT_REGEX  }
+        commands.count { it instanceof ReportRobotCommand } == lines.count { it.matches RobotCommand.REPORT_REGEX }
     }
 
     def "CommandsService no commands"() {
         when:
         def service = new CommandsService('foo')
-        def commands = service.getCommands();
+        def commands = service.getRobotCommands();
 
         then:
         commands.size() == 0

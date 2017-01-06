@@ -19,7 +19,7 @@ public class FileService {
                 lines.add(line);
             br.close();
         } catch (IOException e) {
-            System.out.println("Could not read commands file");
+            System.out.println("Could not read robotCommands file");
         }
     }
 
