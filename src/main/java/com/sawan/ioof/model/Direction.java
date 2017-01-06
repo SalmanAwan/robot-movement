@@ -5,7 +5,7 @@ public enum Direction {
 
     private String name;
 
-    private Direction(String s){
+    Direction(String s){
         this.name = s;
     }
 

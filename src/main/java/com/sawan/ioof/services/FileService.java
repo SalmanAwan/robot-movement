@@ -15,8 +15,9 @@ public class FileService {
             // For better coverage not using nio stream based lines reading
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line;
-            while ((line = br.readLine()) != null)
+            while ((line = br.readLine()) != null) {
                 lines.add(line);
+            }
             br.close();
         } catch (IOException e) {
             System.out.println("Could not read robotCommands file");

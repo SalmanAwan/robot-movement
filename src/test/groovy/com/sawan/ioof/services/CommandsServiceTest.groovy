@@ -1,6 +1,6 @@
 package com.sawan.ioof.services
 
-import com.sawan.ioof.commands.*
+import com.sawan.ioof.model.commands.*
 import com.sawan.ioof.helper.TestHelper
 import spock.lang.Specification
 
