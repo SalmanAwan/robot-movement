@@ -1,6 +1,9 @@
 package com.sawan.ioof.services
 
+import com.sawan.ioof.helper.TestHelper
 import spock.lang.Specification
+
+import static com.sawan.ioof.helper.TestHelper.COMMANDS_FILE_PATH
 
 class CommandsServiceTest extends Specification {
 
@@ -10,7 +13,7 @@ class CommandsServiceTest extends Specification {
         def commands = service.getCommands();
 
         then:
-        commands.size() == 12
+        commands.size() == TestHelper.readRawRows().size()
     }
 
     def "CommandsService no commands"() {
